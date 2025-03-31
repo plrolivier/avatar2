@@ -5,16 +5,16 @@ on:
         branches:
             - 'main'
             - 'dev**'
-    pull_request:
-        branches:
-            - 'main'
-            - 'dev**'
+#    pull_request:
+#        branches:
+#            - 'main'
+#            - 'dev**'
     workflow_dispatch:      # allow manual trigger
 
 
 jobs:
     build:
-        name: Building avatar2 docker images
+        name: Build and unit test avatar2 docker images
         if: github.repository == 'plrolivier/avatar2'
         runs-on: ubuntu-24.04
         strategy:
@@ -43,26 +43,6 @@ jobs:
                 retention-days: 30
                 #compression-level: 9
                 overwrite: true
-
-    test:
-        name: Unit Testing
-        needs: build
-        runs-on: ubuntu-24.04
-        steps:
-            - name: Check out repository code
-              uses: actions/checkout@v4
-
-            - name: Download docker images artifacts
-              uses: actions/download-artifact@v4
-              with:
-                name: avatar2-docker-images
-                path: /tmp/avatar2-docker-images/
-
-            - name: Load docker images
-              run: |
-                docker load -i /tmp/avatar2-docker-images/avatar2-core.tar
-                docker load -i /tmp/avatar2-docker-images/avatar2.tar
-                docker image ls
 
             - name: Build test profile docker image
               run: |
