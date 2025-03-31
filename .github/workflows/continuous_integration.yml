@@ -15,7 +15,7 @@ on:
 jobs:
     build:
         name: Building avatar2 docker images
-        if: github.repository == 'avatartwo/avatar2'
+        if: github.repository == 'plrolivier/avatar2'
         runs-on: ubuntu-24.04
         strategy:
             fail-fast: false
