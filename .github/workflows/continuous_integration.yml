@@ -33,8 +33,7 @@ jobs:
                 mkdir -p /tmp/avatar2-docker-images
                 docker save avatartwo/avatar2-core:latest -o /tmp/avatar2-docker-images/avatar2-core.tar
                 docker save avatartwo/avatar2:latest -o /tmp/avatar2-docker-images/avatar2.tar
-                docker save avatartwo/avatar2-arm -o /tmp/avatar2-docker-images/avatar2-arm.tar
-                docker save avatartwo/avatar2-mips -o /tmp/avatar2-docker-images/avatar2-mips.tar
+                docker image ls
 
             - name: Upload docker images as artifacts
               uses: actions/upload-artifact@v4
@@ -63,8 +62,7 @@ jobs:
               run: |
                 docker load -i /tmp/avatar2-docker-images/avatar2-core.tar
                 docker load -i /tmp/avatar2-docker-images/avatar2.tar
-                docker load -i /tmp/avatar2-docker-images/avatar2-arm.tar
-                docker load -i /tmp/avatar2-docker-images/avatar2-mips.tar
+                docker image ls
 
             - name: Build test profile docker image
               run: |
