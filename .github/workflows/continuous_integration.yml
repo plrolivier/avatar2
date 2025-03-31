@@ -26,9 +26,7 @@ jobs:
 
             - name: Build with docker compose
               run: |
-                docker compose build avatar2-core-arm avatar2-core-mips avatar2-core-i386 avatar2-core-x86
-                docker image ls
-                docker compose build avatar2-arm avatar2-mips avatar2-i386 avatar2-x86
+                docker compose build
 
             - name: Save docker images
               run: |
